@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gitolite
 
   # Very simple proxy object for checking if the proxied object was modified
@@ -16,7 +18,7 @@ module Gitolite
     end
 
     def respond_to?(symbol, include_private = false)
-      super || [:dirty?, :clean_up!].include?(symbol.to_sym)
+      super || %i[dirty? clean_up!].include?(symbol.to_sym)
     end
 
     def dirty?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gitolite
 
   # Models an SSH key within gitolite
@@ -14,7 +16,7 @@ module Gitolite
     class << self
 
       def from_file(key)
-        raise ArgumentError, "#{key} does not exist!" unless File.exists?(key)
+        raise ArgumentError, "#{key} does not exist!" unless File.exist?(key)
 
         # Owner is the basename of the key
         # i.e., <owner>/<location>/<owner>.pub
@@ -86,7 +88,6 @@ module Gitolite
         # Remove the location, if it exists and is empty
         delete_dir_if_empty(File.join(key_owner_dir, key.location)) if key.location
 
-
         # Remove the owner dir, if empty
         delete_dir_if_empty(key_owner_dir)
       end
@@ -135,12 +136,12 @@ module Gitolite
     end
 
 
-    def ==(key)
-      @type == key.type &&
-      @blob == key.blob &&
-      @email == key.email &&
-      @owner == key.owner &&
-      @location == key.location
+    def ==(other)
+      @type == other.type &&
+        @blob == other.blob &&
+        @email == other.email &&
+        @owner == other.owner &&
+        @location == other.location
     end
 
 

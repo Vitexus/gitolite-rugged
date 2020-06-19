@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gitolite
   class GitoliteAdmin
 
@@ -92,7 +94,7 @@ module Gitolite
           File.join(dir, DEFAULTS[:config_dir]),
           File.join(dir, DEFAULTS[:key_dir]),
           File.join(dir, DEFAULTS[:config_dir], DEFAULTS[:config_file])
-        ].each { |f| return false unless File.exists?(f) }
+        ].each { |f| return false unless File.exist?(f) }
 
         true
       end
@@ -111,7 +113,7 @@ module Gitolite
 
 
     def exists?
-      Dir.exists?(path)
+      Dir.exist?(path)
     end
 
 
@@ -166,6 +168,7 @@ module Gitolite
     def get_references(name)
       ref = repo.references[name]
       return nil if ref.nil?
+
       ref.target
     end
 

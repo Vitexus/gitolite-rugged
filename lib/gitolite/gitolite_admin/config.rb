@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gitolite
   class GitoliteAdmin
     module Config
@@ -48,7 +50,7 @@ module Gitolite
 
 
         def save_config_file(index)
-          new_conf = @config.to_file(config_dir_path)
+          @config.to_file(config_dir_path)
           index.add(relative_config_file)
         end
 
